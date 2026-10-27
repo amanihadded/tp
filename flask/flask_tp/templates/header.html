@@ -1,0 +1,11 @@
+<header>
+    <a class="logo" href="{{ url_for('accueil') }}">
+        <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Logo du site">
+        <span>Mon Site</span>
+    </a>
+    <nav>
+        <a href="{{ url_for('accueil') }}" {% if request.endpoint == 'accueil' %}class="actif"{% endif %}>Accueil</a>
+        <a href="{{ url_for('about') }}" {% if request.endpoint == 'about' %}class="actif"{% endif %}>À propos</a>
+        <a href="{{ url_for('contact') }}" {% if request.endpoint == 'contact' %}class="actif"{% endif %}>Contact</a>
+    </nav>
+</header>

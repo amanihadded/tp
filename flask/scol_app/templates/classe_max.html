@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Classe la plus nombreuse{% endblock %}
+
+{% block content %}
+
+<h1>Classe ayant le plus grand nombre d'etudiants</h1>
+
+{% if classe %}
+    <div class="entete">
+        <span class="libelle">Classe :</span>
+        <span class="valeur">{{ classe.NomClass }}</span>
+    </div>
+
+    <table class="resultat">
+        <tr>
+            <th>CodClass</th>
+            <th>NomClass</th>
+            <th>Nombre d'etudiants comptes</th>
+        </tr>
+        <tr>
+            <td class="mat">{{ classe.CodClass }}</td>
+            <td class="mat">{{ classe.NomClass }}</td>
+            <td class="nha">{{ nb }}</td>
+        </tr>
+    </table>
+
+    <p style="text-align:center">
+        La colonne <b>NbrEtud</b> de la classe {{ classe.CodClass }} vaut
+        desormais <b>{{ classe.NbrEtud }}</b>.
+    </p>
+{% else %}
+    <p>Aucun etudiant enregistre : le calcul est impossible.</p>
+{% endif %}
+
+{% endblock %}

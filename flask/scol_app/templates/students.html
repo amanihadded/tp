@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %}Liste des etudiants{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <h1>Liste des etudiants</h1>
+
+    <p>
+        <a href="{{ url_for('addStudent') }}" class="btn btn-success">
+            <i class="fa fa-plus"></i> Nouvel etudiant
+        </a>
+    </p>
+
+    <table class="table table-bordered align-middle">
+        <thead>
+            <tr>
+                <th>Photo</th>
+                <th>NCE</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Date naissance</th>
+                <th>Lieu naissance</th>
+                <th>Classe</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for etudiant in etudiants %}
+            <tr>
+                <td>
+                    {% if etudiant.photo %}
+                        <img src="{{ url_for('static', filename='image/' + etudiant.photo) }}"
+                             alt="Student Photo" height="60">
+                    {% else %}
+                        <span class="text-muted">No photo</span>
+                    {% endif %}
+                </td>
+                <td>{{ etudiant.NCE }}</td>
+                <td>{{ etudiant.Nom }}</td>
+                <td>{{ etudiant.Prenom }}</td>
+                <td>{{ etudiant.DateNais.strftime('%d-%m-%Y') if etudiant.DateNais }}</td>
+                <td>{{ etudiant.LieuNais or '' }}</td>
+                <td>{{ etudiant.classe.NomClass }}</td>
+                <td>
+                    <a href="{{ url_for('editStudent', student_nce=etudiant.NCE) }}"
+                       class="btn btn-primary">
+                        <i class="fa fa-pen"></i> Edit
+                    </a>
+                    <a href="{{ url_for('deleteStudent', student_nce=etudiant.NCE) }}"
+                       class="btn btn-danger"
+                       onclick="return confirm('Are you sure you want to delete this student?')">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="8">Aucun etudiant enregistre.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}

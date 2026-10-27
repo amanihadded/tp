@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Absences d'un etudiant</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 30px;
+        }
+
+        .recherche {
+            margin-bottom: 30px;
+        }
+
+        .erreur {
+            color: red;
+        }
+
+        /* --- Bloc resultat : mise en forme demandee par l'enonce --- */
+        .entete {
+            text-align: center;
+            margin-bottom: 6px;
+        }
+
+        .libelle {
+            color: #7030A0;
+            font-weight: bold;
+        }
+
+        .valeur {
+            color: #A74FA7;
+        }
+
+        .ligne-etudiant span {
+            margin: 0 18px;
+        }
+
+        table.absences {
+            border-collapse: collapse;
+            margin: 16px auto 0 auto;
+            width: 60%;
+        }
+
+        table.absences th,
+        table.absences td {
+            border: 1px solid #000;
+            padding: 4px 10px;
+        }
+
+        table.absences th {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        table.absences td.date {
+            text-align: left;
+        }
+
+        table.absences td.mat,
+        table.absences td.nha {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="recherche">
+    <h1>Absences d'un etudiant</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+            <p><b>{{ message }}</b></p>
+        {% endfor %}
+    {% endwith %}
+
+    <form method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.nce.label }}<br>
+            {{ form.nce() }}
+            {% for erreur in form.nce.errors %}
+                <span class="erreur">{{ erreur }}</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+</div>
+
+{% if etudiant %}
+    <div class="entete">
+        <span class="libelle">Classe :</span>
+        <span class="valeur">{{ etudiant.classe.NomClass }}</span>
+    </div>
+
+    <div class="entete ligne-etudiant">
+        <span>
+            <span class="libelle">Etudiant :</span>
+            <span class="valeur">{{ etudiant.NCE }}</span>
+        </span>
+        <span>
+            <span class="libelle">Nom :</span>
+            <span class="valeur">{{ etudiant.Nom }}</span>
+        </span>
+        <span>
+            <span class="libelle">Prénom :</span>
+            <span class="valeur">{{ etudiant.Prenom }}</span>
+        </span>
+    </div>
+
+    {% if absences %}
+        <table class="absences">
+            <tr>
+                <th>Date absece</th>
+                <th>CodMat</th>
+                <th>NHA</th>
+            </tr>
+            {% for a in absences %}
+            <tr>
+                <td class="date">{{ a.DateA.strftime('%d-%m-%Y') }}</td>
+                <td class="mat">{{ a.CodMat }}</td>
+                <td class="nha">{{ a.NHA }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p style="text-align:center">Aucune absence enregistree pour cet etudiant.</p>
+    {% endif %}
+{% endif %}
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+/* Pied de page */
+
+footer {
+    background: #222;
+    color: #bbb;
+    text-align: center;
+    padding: 20px;
+}
+
+footer p {
+    margin: 4px 0;
+}
+
+footer .petit {
+    font-size: 0.85rem;
+    color: #888;
+}

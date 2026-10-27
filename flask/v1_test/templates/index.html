@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Mon premier site Flask</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Bonjour, Flask fonctionne !</h1>
+    <p>Cette page vient du dossier <code>templates/</code>.</p>
+    <p>Le style vient du dossier <code>static/</code>.</p>
+    <p>{{ message }}</p>
+    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+</body>
+</html>

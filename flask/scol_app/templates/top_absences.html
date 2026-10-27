@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Top 3 des absences{% endblock %}
+
+{% block content %}
+
+<h1>Les 3 modules les plus absentes (toutes classes confondues)</h1>
+
+{% if resultats %}
+    <table class="resultat">
+        <tr>
+            <th>Rang</th>
+            <th>CodMat</th>
+            <th>Intitule</th>
+            <th>Total NHA</th>
+        </tr>
+        {% for cod_mat, int_mat, total in resultats %}
+        <tr>
+            <td class="rang">{{ loop.index }}</td>
+            <td class="mat">{{ cod_mat }}</td>
+            <td class="mat">{{ int_mat }}</td>
+            <td class="nha">{{ total }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p style="text-align:center">Aucune absence enregistree.</p>
+{% endif %}
+
+{% endblock %}

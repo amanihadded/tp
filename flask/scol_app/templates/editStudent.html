@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block title %}Editer un etudiant{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <h2>Edit Student</h2>
+
+            <form method="POST"
+                  action="{{ url_for('editStudent', student_nce=etudiant.NCE) }}"
+                  enctype="multipart/form-data">
+
+                <div class="form-group mb-3">
+                    <label for="nce">NCE</label>
+                    <!-- Le NCE est la cle primaire : il est affiche mais non modifiable -->
+                    <input type="text" class="form-control" id="nce"
+                           value="{{ etudiant.NCE }}" disabled>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="nom">Nom</label>
+                    <input type="text" class="form-control" id="nom" name="nom"
+                           value="{{ etudiant.Nom }}" maxlength="50" required>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="prenom">Prenom</label>
+                    <input type="text" class="form-control" id="prenom" name="prenom"
+                           value="{{ etudiant.Prenom }}" maxlength="50" required>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="date_nais">Date de naissance</label>
+                    <input type="date" class="form-control" id="date_nais"
+                           name="date_nais"
+                           value="{{ etudiant.DateNais.isoformat() if etudiant.DateNais }}">
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="lieu_nais">Lieu de naissance</label>
+                    <input type="text" class="form-control" id="lieu_nais"
+                           name="lieu_nais" value="{{ etudiant.LieuNais or '' }}"
+                           maxlength="50">
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="cod_class">Classe</label>
+                    <select class="form-control" id="cod_class" name="cod_class" required>
+                        {% for classe in classes %}
+                        <option value="{{ classe.CodClass }}"
+                                {% if classe.CodClass == etudiant.CodClass %}selected{% endif %}>
+                            {{ classe.NomClass }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="photo">Photo</label>
+                    {% if etudiant.photo %}
+                        <div>
+                            <img src="{{ url_for('static', filename='image/' + etudiant.photo) }}"
+                                 alt="Student Photo" height="120">
+                        </div>
+                    {% else %}
+                        <p>No photo available</p>
+                    {% endif %}
+                    <input type="file" class="form-control" id="photo" name="photo"
+                           accept="image/*">
+                    <small class="text-muted">
+                        Laisser vide pour conserver la photo actuelle.
+                    </small>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a href="{{ url_for('students') }}" class="btn btn-secondary">Annuler</a>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

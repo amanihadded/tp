@@ -1,0 +1,40 @@
+# Environnements virtuels : ne se partagent pas, ne se commitent pas.
+# Ils se recreent sur n'importe quelle machine :
+#   python -m venv <nom> puis pip install -r requirements.txt
+venv/
+.venv/
+env/
+mon_env/
+monvenv/
+
+# Un venv porte toujours ces deux dossiers : la regle attrape aussi
+# les environnements nommes autrement.
+*/Scripts/activate
+pyvenv.cfg
+
+# Fichiers compiles par Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Bases SQLite et dossiers instance de Flask
+*.db
+*.sqlite3
+instance/
+
+# Variables d'environnement : contiennent des secrets
+.env
+
+# Fichiers envoyes par les utilisateurs : ce sont des donnees, pas du code
+**/static/uploads/
+
+# Le mini-projet a son propre depot (mini_projet_flask) : on evite de le
+# suivre ici aussi, sinon git le verrait comme un depot imbrique.
+mini_projet/
+
+# Editeurs et systeme
+.vscode/
+.idea/
+*.swp
+Thumbs.db
+desktop.ini

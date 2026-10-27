@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}">
+{% endblock %}
+
+{% block content %}
+<h1>Contact</h1>
+
+{% if confirmation %}
+<p class="confirmation">{{ confirmation }}</p>
+{% endif %}
+
+<form method="post" action="{{ url_for('contact') }}">
+    <label for="nom">Nom</label>
+    <input type="text" id="nom" name="nom" required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="message">Message</label>
+    <textarea id="message" name="message" rows="5" required></textarea>
+
+    <button type="submit">Envoyer</button>
+</form>
+{% endblock %}

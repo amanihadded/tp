@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Ajouter un utilisateur</title>
+</head>
+<body>
+
+<h1>Ajouter un utilisateur</h1>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+        <p><b>{{ message }}</b></p>
+    {% endfor %}
+{% endwith %}
+
+<form method="post">
+    {{ form.hidden_tag() }}
+
+    <p>
+        {{ form.username.label }}<br>
+        {{ form.username() }}
+        {% for erreur in form.username.errors %}
+            <span style="color:red">{{ erreur }}</span>
+        {% endfor %}
+    </p>
+
+    <p>
+        {{ form.email.label }}<br>
+        {{ form.email() }}
+        {% for erreur in form.email.errors %}
+            <span style="color:red">{{ erreur }}</span>
+        {% endfor %}
+    </p>
+
+    <p>
+        {{ form.password.label }}<br>
+        {{ form.password() }}
+        {% for erreur in form.password.errors %}
+            <span style="color:red">{{ erreur }}</span>
+        {% endfor %}
+    </p>
+
+    <p>{{ form.submit() }}</p>
+</form>
+
+<p><a href="{{ url_for('liste_users') }}">Voir la liste des utilisateurs</a></p>
+
+</body>
+</html>

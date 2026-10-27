@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block content %}
+<h1>Bienvenue</h1>
+
+<p>
+    Ceci est la page d'accueil d'une mini application Flask.
+    Elle utilise un gabarit commun (<code>base.html</code>) avec un en-tête
+    et un pied de page partagés par toutes les pages.
+</p>
+
+<ul>
+    <li><a href="{{ url_for('about') }}">À propos</a> — ce que fait ce site</li>
+    <li><a href="{{ url_for('contact') }}">Contact</a> — un formulaire</li>
+</ul>
+
+<img src="{{ url_for('static', filename='images/logo.png') }}" alt="Image de bienvenue">
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}À propos{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+{% endblock %}
+
+{% block content %}
+<h1>À propos</h1>
+
+<p class="intro">
+    Mini application réalisée dans le cadre du TP de programmation Python.
+</p>
+
+<h2>Technologies</h2>
+<ul class="liste-techno">
+    <li><strong>Flask</strong> — le serveur web en Python</li>
+    <li><strong>Jinja2</strong> — le moteur de gabarits</li>
+    <li><strong>CSS</strong> — la mise en forme, un fichier par partie du site</li>
+</ul>
+
+<h2>Structure</h2>
+<p>
+    Les pages héritent toutes de <code>base.html</code>, qui inclut
+    <code>header.html</code> et <code>footer.html</code>. L'en-tête et le pied
+    de page ne sont donc écrits qu'une seule fois.
+</p>
+{% endblock %}

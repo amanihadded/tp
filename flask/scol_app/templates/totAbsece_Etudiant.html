@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Total des absences par module{% endblock %}
+
+{% block content %}
+
+<h1>Total des absences par module</h1>
+
+<div class="entete">
+    <span class="libelle">Classe :</span>
+    <span class="valeur">{{ etudiant.classe.NomClass }}</span>
+</div>
+
+<div class="entete ligne-etudiant">
+    <span>
+        <span class="libelle">Etudiant :</span>
+        <span class="valeur">{{ etudiant.NCE }}</span>
+    </span>
+    <span>
+        <span class="libelle">Nom :</span>
+        <span class="valeur">{{ etudiant.Nom }}</span>
+    </span>
+    <span>
+        <span class="libelle">Prenom :</span>
+        <span class="valeur">{{ etudiant.Prenom }}</span>
+    </span>
+</div>
+
+{% if totaux %}
+    <table class="resultat">
+        <tr>
+            <th>CodMat</th>
+            <th>Total NHA</th>
+        </tr>
+        {% for cod_mat, total in totaux %}
+        <tr>
+            <td class="mat">{{ cod_mat }}</td>
+            <td class="nha">{{ total }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p style="text-align:center">Aucune absence enregistree pour cet etudiant.</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,46 @@
+/* Styles de base, communs à tout le site */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    color: #222;
+    background: #fafafa;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+h1 {
+    margin-top: 0;
+    color: #0a6d52;
+}
+
+h2 {
+    margin-top: 32px;
+    font-size: 1.2rem;
+    color: #0a6d52;
+}
+
+a {
+    color: #0a6d52;
+}
+
+code {
+    background: #eee;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
